@@ -294,16 +294,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 * * *
 ### **PUT** update post information
 
-> Endpoint: /api/categories/:id
+> Endpoint: /api/posts/:id
 
 ### Expected Data
 
 ```
 {
-	"id": 1,
-	"name": "Doggos",
-	"imageUrl": "https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg",
-	"user_id": 1
+	"post_description": "Doggos",
+	"post_url": "https://google.com",
 }
 ```
 
@@ -311,8 +309,8 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 
 ```
 {
-  "message": "Category has been successfully updated.",
-  "updatedCategory": 1
+  "message": "Post has been successfully updated.",
+  "updatedPost": 1
 }
 ```
 
@@ -330,14 +328,14 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 ```
 ```
 {
-  "message": "Could not find the category with that id."
+  "message": "Could not find the post with that id."
 }
 ```
 
 
 * * *
 
-### DELETE Category
+### **DELETE** post
 
 > Endpoint: /api/posts/:id
 
