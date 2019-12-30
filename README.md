@@ -1,1 +1,386 @@
 # backendtest
+
+## Register Users
+
+> Endpoint: /api/auth/register
+
+### Expected Data
+
+```
+{
+	"username": "Testing",
+	"password": "Password123",
+	"email": "Testing@email.com"
+}
+```
+
+### Return Response
+
+`"Testing has been successfully created."`
+
+### Errors
+
+> Username's **must** be unique to register a user.
+
+```
+{
+  "messsage": "Invalid credentials for account creation.",
+  "errors": [
+    "Please include a username with at least 2 characters.",
+    "Please include a password with at least 3 characters.",
+    "Please include an email."
+  ]
+}
+```
+* * *
+
+## Login Users
+
+> Endpoint: /api/auth/login
+
+### Expected Data
+
+```
+{
+	"username": "Test",
+	"password": "Testing"
+}
+```
+
+### Return Response
+
+```
+{
+  "message": "Welcome back Test!",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlhdCI6MTU3NDEwODE2MCwiZXhwIjoxNTc0MTM2OTYwfQ.NuVpPq9uQ4QqKrP6U4ZML63U7sjXyh4ytTzOmY-qLoU",
+  "id": "5"
+}
+```
+
+### Errors
+
+```
+{
+  "message": "Invalid user credentials, unauthorized."
+}
+```
+
+* * *
+
+## User Endpoints
+
+**All User Endpoints have authentication and are looking for the following header, token will be different for each user**
+
+### Headers
+
+**Expected headers**
+```
+Content-Type: application/json
+
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlhdCI6MTU3NDEwMTUwNiwiZXhwIjoxNTc0MTMwMzA2fQ.SfYjz_Lmto8wTAIyDnwxxSb6-lJyF1F3GuJJQwYB_tA
+```
+
+### **GET** all Posts
+
+> Endpoint: /api/posts/
+
+### Return Response
+
+```
+[
+  {
+    "id": 1,
+    "post_url": null,
+    "post_description": "If You Had The World’s Attention For 30 Seconds, What Would You Say?"
+  },
+  {
+    "id": 2,
+    "post_url": null,
+    "post_description": "If You Had To Work But Didn’t Need The Money, What Would You Choose To Do?"
+  }
+]
+```
+
+### Errors
+
+```
+{
+  "message": "Invalid user credentials."
+}
+```
+
+### **GET** specific Posts
+
+> Endpoint: /api/categories/:id
+
+### Return Response
+
+```
+{
+  "id": 1,
+  "post_url": null,
+  "post_description": "If You Had The World’s Attention For 30 Seconds, What Would You Say?"
+}
+```
+
+### Errors
+
+```
+{
+  "message": "Invalid user credentials."
+}
+```
+```
+{
+  "message": "Could not find a post with the given id."
+}
+```
+### **GET** posts for a **specific** user
+
+> Endpoint: /api/posts/:id/user
+
+### Return Response
+
+```
+[
+  {
+    "id": 1,
+    "post_url": null,
+    "post_description": "If You Had The World’s Attention For 30 Seconds, What Would You Say?",
+    "user_id": 1,
+    "username": "cory"
+  },
+  {
+    "id": 2,
+    "post_url": null,
+    "post_description": "If You Had To Work But Didn’t Need The Money, What Would You Choose To Do?",
+    "user_id": 1,
+    "username": "cory"
+  },
+  {
+    "id": 26,
+    "post_url": null,
+    "post_description": "testing this out",
+    "user_id": 1,
+    "username": "cory"
+  }
+]
+```
+
+### Errors
+
+```
+{
+  "message": "Invalid user credentials."
+}
+```
+```
+{
+  "message": "Could not find user post information for specified id."
+}
+```
+
+### **GET** all Users
+
+> Endpoint: /api/users/
+
+### Return Response
+
+```
+[
+  {
+    "id": 1,
+    "username": "cory",
+    "email": "cory@email.com"
+  },
+  {
+    "id": 2,
+    "username": "robert",
+    "email": "robert@email.com"
+  },
+  {
+    "id": 3,
+    "username": "eian",
+    "email": "eian@email.com"
+  },
+  {
+    "id": 4,
+    "username": "asher",
+    "email": "asher@email.com"
+  },
+  {
+    "id": 5,
+    "username": "thomas",
+    "email": "thomas@email.com"
+  }
+]
+```
+
+### Errors
+
+```
+{
+  "message": "Invalid user credentials."
+}
+```
+```
+{
+  "message": "User credentials were not provided."
+}
+```
+### **GET** specific User
+
+> Endpoint: /api/users/:id
+
+### Return Response
+
+```
+{
+  "id": 1,
+  "username": "cory",
+  "email": "cory@email.com"
+}
+```
+
+### Errors
+
+```
+{
+  "message": "Invalid user credentials."
+}
+```
+```
+{
+  "message": "Could not find a user with the given id."
+}
+```
+
+* * *
+
+### **POST** posts
+
+> Endpoint: /api/posts/
+
+### Expected Data
+
+> post_url is **not** required for posting categories.
+> **must** pass in a user_id pointing to the user you want to make the post for
+
+```
+{
+	"post_description": "example",
+	"imageUrl": "https://reddit.com/justanexample",
+	"user_id": 2
+}
+```
+
+### Return Response
+
+```
+{
+  "message": "The category was successfully created."
+}
+```
+
+### Errors
+
+> post_url **must** be unique if used.
+
+```
+{
+  "message": "Invalid user credentials."
+}
+```
+* * *
+### **PUT** update post information
+
+> Endpoint: /api/categories/:id
+
+### Expected Data
+
+```
+{
+	"id": 1,
+	"name": "Doggos",
+	"imageUrl": "https://images.freeimages.com/images/large-previews/035/young-golden-retriever-1404848.jpg",
+	"user_id": 1
+}
+```
+
+### Return Response
+
+```
+{
+  "message": "Category has been successfully updated.",
+  "updatedCategory": 1
+}
+```
+
+### Errors
+
+```
+{
+  "message": "Invalid user credentials."
+}
+```
+```
+{
+  "message": "User credentials were not provided."
+}
+```
+```
+{
+  "message": "Could not find the category with that id."
+}
+```
+
+
+* * *
+
+### DELETE Category
+
+> Endpoint: /api/posts/:id
+
+### Return Response
+
+```
+{
+  "message": "The post was successfully deleted."
+}
+```
+
+### Errors
+```
+{
+  "message": "Invalid user credentials."
+}
+```
+```
+{
+  "message": "Could not find the post with the specified id."
+}
+```
+
+### DELETE User
+
+> Endpoint: /api/users/:id
+
+### Return Response
+
+```
+{
+  "message": "The user was successfully deleted."
+}
+```
+
+### Errors
+```
+{
+  "message": "Invalid user credentials."
+}
+```
+```
+{
+  "message": "Could not find the user with the specified id."
+}
+```
