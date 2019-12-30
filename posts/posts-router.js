@@ -73,7 +73,7 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
   const { id } = req.params;
   const { post_description, user_id } = req.body;
-  const changes = { id, post_description, user_id };
+  const changes = { id, post_description, post_url, user_id };
 
   Posts.findById(id)
     .then(post => {
