@@ -111,7 +111,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 
 ### **GET** specific Posts
 
-> Endpoint: /api/categories/:id
+> Endpoint: /api/posts/:id
 
 ### Return Response
 
@@ -263,13 +263,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 
 ### Expected Data
 
-> post_url is **not** required for posting categories.
+> post_url is **not** required.
 > **must** pass in a user_id pointing to the user you want to make the post for
 
 ```
 {
 	"post_description": "example",
-	"imageUrl": "https://reddit.com/justanexample",
+	"post_url": "https://reddit.com/justanexample",
 	"user_id": 2
 }
 ```
@@ -278,7 +278,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 
 ```
 {
-  "message": "The category was successfully created."
+  "message": "The post was successfully created."
 }
 ```
 
