@@ -18,6 +18,9 @@
     "url": "https://github.com/coryortega/backendtest/issues"
   },
   "homepage": "https://github.com/coryortega/backendtest#readme",
+  "jest": {
+    "testEnvironment": "node"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
