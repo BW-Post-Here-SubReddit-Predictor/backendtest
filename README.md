@@ -90,14 +90,32 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 [
   {
     "id": 1,
-    "post_url": null,
-    "post_description": "If You Had The World’s Attention For 30 Seconds, What Would You Say?"
+    "title": "NA",
+    "subreddit": "NA",
+    "post": "If You Had The World’s Attention For 30 Seconds, What Would You Say?",
+    "user_id": 1
   },
   {
     "id": 2,
-    "post_url": null,
-    "post_description": "If You Had To Work But Didn’t Need The Money, What Would You Choose To Do?"
-  }
+    "title": "NA",
+    "subreddit": "NA",
+    "post": "If You Had To Work But Didn’t Need The Money, What Would You Choose To Do?",
+    "user_id": 1
+  },
+  {
+    "id": 3,
+    "title": "NA",
+    "subreddit": "NA",
+    "post": "What Is In Your Fridge Right Now?",
+    "user_id": 2
+  },
+  {
+    "id": 4,
+    "title": "NA",
+    "subreddit": "NA",
+    "post": "If You Were Home On A Rainy Sunday Afternoon, What Movie Would You Most Want To See On Television?",
+    "user_id": 2
+  },
 ]
 ```
 
@@ -118,8 +136,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 ```
 {
   "id": 1,
-  "post_url": null,
-  "post_description": "If You Had The World’s Attention For 30 Seconds, What Would You Say?"
+  "post": "If You Had The World’s Attention For 30 Seconds, What Would You Say?",
+  "title": "NA",
+  "subreddit": "NA"
 }
 ```
 
@@ -145,22 +164,17 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 [
   {
     "id": 1,
-    "post_url": null,
-    "post_description": "If You Had The World’s Attention For 30 Seconds, What Would You Say?",
+    "post": "If You Had The World’s Attention For 30 Seconds, What Would You Say?",
+    "title": "NA",
+    "subreddit": "NA",
     "user_id": 1,
     "username": "cory"
   },
   {
     "id": 2,
-    "post_url": null,
-    "post_description": "If You Had To Work But Didn’t Need The Money, What Would You Choose To Do?",
-    "user_id": 1,
-    "username": "cory"
-  },
-  {
-    "id": 26,
-    "post_url": null,
-    "post_description": "testing this out",
+    "post": "If You Had To Work But Didn’t Need The Money, What Would You Choose To Do?",
+    "title": "NA",
+    "subreddit": "NA",
     "user_id": 1,
     "username": "cory"
   }
@@ -263,13 +277,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 
 ### Expected Data
 
-> post_url is **not** required.
 > **must** pass in a user_id pointing to the user you want to make the post for
 
 ```
 {
-	"post_description": "example",
-	"post_url": "https://reddit.com/justanexample",
+	"post": "example",
+	"title": "example",
+  "subreddit":"example"
 	"user_id": 2
 }
 ```
@@ -283,8 +297,6 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 ```
 
 ### Errors
-
-> post_url **must** be unique if used.
 
 ```
 {
@@ -300,8 +312,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlRpbSIsImlh
 
 ```
 {
-	"post_description": "Doggos",
-	"post_url": "https://google.com",
+  "title": "example",
+  "subreddit": "example",
+  "post": "What Is In Your Fridge Right Now?",
 }
 ```
 
