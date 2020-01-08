@@ -16,9 +16,10 @@ exports.up = function(knex) {
       })
     .createTable('posts', tbl => {
         tbl.increments();
-        tbl.string('post_url', 450)
-        .unique();
-        tbl.text('post_description')
+        tbl.string('title', 450)
+        .notNullable();
+        tbl.string('subreddit', 128);
+        tbl.text('post')
         .notNullable();
         tbl
         .integer("user_id")

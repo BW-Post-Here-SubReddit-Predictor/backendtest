@@ -10,12 +10,13 @@ module.exports = {
 };
 
 function find() {
-  return db("posts").select("id", "post_url", "post_description");
+  return db("posts")
+  // .select("id", "post_url", "post_description", "title", "subreddits");
 }
 
 function findById(id) {
   return db("posts")
-    .select("id", "post_url", "post_description")
+    .select("id", "post", "title", "subreddit")
     .orderBy("id")
     .where({ id })
     .first();
@@ -25,8 +26,9 @@ function findByPost(id) {
   return db("posts")
     .select(
       "posts.id",
-      "posts.post_url",
-      "posts.post_description",
+      "posts.post",
+      "posts.title",
+      "posts.subreddit",
       "posts.user_id",
       "users.username"
     )
